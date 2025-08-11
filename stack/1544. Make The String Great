@@ -1,0 +1,21 @@
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var makeGood = function(s) {
+    const st = [];
+    for (const ch of s)
+    {
+        if (st.length)
+        {
+            const top = st[st.length - 1];
+            if (top !== ch && top.toLowerCase() === ch.toLowerCase())
+            {
+                st.pop();
+                continue;
+            }
+        }
+        st.push(ch);
+    }
+    return st.join('');
+};
