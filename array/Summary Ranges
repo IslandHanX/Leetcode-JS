@@ -1,0 +1,25 @@
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var summaryRanges = function(nums) {
+    const res = [];
+    if (nums.length === 0)
+        return res;
+    let start = nums[0];
+    let prev = nums[0];
+    for (let i = 1; i < nums.length; i++)
+    {
+        if (nums[i] === prev + 1)
+            prev = nums[i];
+        else
+        {
+            res.push(start === prev ? `${start}` : `${start}->${prev}`);
+            start = prev = nums[i];
+        }
+    }
+    res.push(start === prev ? `${start}` : `${start}->${prev}`);
+    return res;
+};
+
+// 用${...} 这种“模板字符串插值”时用反引号圈起来 

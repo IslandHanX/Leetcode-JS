@@ -1,0 +1,18 @@
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function(rowIndex) {
+    const tmp = [];
+    for (let r = 0; r <= rowIndex; r++)
+    {
+        const row = Array(r + 1).fill(1);
+        for (let c = 1; c < r; c++)
+        {
+            row[c] = tmp[r - 1][c - 1] + tmp[r - 1][c];
+        }
+        if (r === rowIndex)
+            return row;
+        tmp.push(row);
+    }
+};
