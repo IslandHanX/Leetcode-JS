@@ -1,0 +1,20 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var dominantIndex = function(nums) {
+    let max1 = -1, max2 = -1, edx = -1;
+    for (let i = 0; i < nums.length; i++)
+    {
+        const x = nums[i];
+        if (x > max1)
+        {
+            max2 = max1;
+            max1 = x;
+            idx = i;
+        }
+        else if (x > max2)
+            max2 = x;
+    }
+    return max1 >= 2 * max2 ? idx : -1;
+};

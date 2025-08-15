@@ -1,0 +1,23 @@
+/**
+ * @param {number[]} score
+ * @return {string[]}
+ */
+var findRelativeRanks = function(score) {
+    const n = score.length;
+    const order = [...score.keys()].sort((i, j) => score[j] - score[i]);
+    const ans = Array(n);
+    for (let i = 1; i <= score.length; i++)
+    {
+        const idx = order[i - 1];
+        if (i === 1)
+            ans[idx] = "Gold Medal";
+        else if (i === 2)
+            ans[idx] = "Silver Medal";
+        else if (i === 3)
+            ans[idx] = "Bronze Medal";
+        else
+            ans[idx] = String(i);
+    }
+    return ans;
+};
+// i是排序好的顺序 idx from order是原下标

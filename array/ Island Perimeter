@@ -1,0 +1,24 @@
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var islandPerimeter = function(grid) {
+    const m = grid.length, n = grid[0].length;
+    let d = 0;
+    for (let i = 0; i < m; i++)
+    {
+        for (let j = 0; j < n; j++)
+        {
+            if (grid[i][j] === 1)
+            {
+                d += 4;
+                if (i > 0 && grid[i-1][j] === 1)
+                    d -= 2;
+                if (j > 0 && grid[i][j-1] === 1)
+                    d -= 2;
+            }
+        }
+    }
+    return d;
+};
+// 方格周长题 二维数组依次遍历 遇到和左边/上边相邻的方格就减掉2 （减掉相邻的面积） 只判断一侧的 这样不会多减

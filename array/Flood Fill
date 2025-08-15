@@ -1,0 +1,34 @@
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} color
+ * @return {number[][]}
+ */
+var floodFill = function(image, sr, sc, color) {
+    const oldColor = image[sr][sc];
+    if (oldColor === color) 
+        return image; // 避免死循环
+
+    const rows = image.length;
+    const cols = image[0].length;
+
+    function dfs(r, c) {
+        // 1. 越界 或 颜色不是 oldColor → 返回
+        if (r < 0 || c < 0 || r >= rows || c >= cols || image[r][c] !== oldColor) {
+            return;
+        }
+
+        // 2. 染色
+        image[r][c] = color;
+
+        // 3. 递归扩散
+        dfs(r - 1, c); // 上
+        dfs(r + 1, c); // 下
+        dfs(r, c - 1); // 左
+        dfs(r, c + 1); // 右
+    }
+
+    dfs(sr, sc);
+    return image;
+};

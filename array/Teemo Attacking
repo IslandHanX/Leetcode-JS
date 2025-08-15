@@ -1,0 +1,18 @@
+/**
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+var findPoisonedDuration = function(timeSeries, duration) {
+    let n = timeSeries.length;
+    if (n === 0)
+        return 0;
+    let timer = duration;
+    for (let i = 1; i < n; i++)
+    {
+        const gap = timeSeries[i] - timeSeries[i - 1];
+        timer += Math.min(duration, gap);
+    }
+    return timer;
+};
+// 记录duration和gap之间比较小的那个

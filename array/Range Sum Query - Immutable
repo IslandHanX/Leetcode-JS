@@ -1,0 +1,32 @@
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+  // pre[i] = nums[0..i-1] 的和；pre[0] = 0
+  this.pre = new Array(nums.length + 1).fill(0);
+  for (let i = 0; i < nums.length; i++) {
+    this.pre[i + 1] = this.pre[i] + nums[i];
+  }
+};
+
+/** 
+ * @param {number} left 
+ * @param {number} right
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function(left, right) {
+  // 区间和 = 前缀和差
+  return this.pre[right + 1] - this.pre[left];
+};
+
+/** 
+pre[i] = nums[0] + nums[1] + ... + nums[i-1]（不含下标 i 的元素）
+所以 pre[0] = 0，pre[1] = nums[0]，pre[2] = nums[0]+nums[1]，以此类推。
+
+这样一来，pre[k] 表示“前 k 个元素的和”。
+要得到区间 [left, right] 的和，就要取“前 right+1 个元素的和”减去“前 left 个元素的和”：
+
+pre[right + 1] = nums[0..right] 的和（包含 right）
+pre[left] = nums[0..left-1] 的和（不包含 left）
+两者相减，恰好得到 nums[left..right]
+ */

@@ -1,0 +1,26 @@
+/**
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+var matrixReshape = function(mat, r, c) {
+    let m = mat.length;
+    let n = mat[0].length;
+    if (m * n !== r * c)
+        return mat;
+    let ans = Array.from({ length: r }, () => Array(c));
+    for (let i = 0; i < m; i++)
+    {
+        for (let j = 0; j < n; j++)
+        {
+            const k = i * n + j;
+            const nr = Math.floor(k / c);
+            const nc = k % c;
+            ans[nr][nc] = mat[i][j];
+        }
+    }
+    return ans;
+};
+/*
+ */
