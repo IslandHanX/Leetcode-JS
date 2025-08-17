@@ -1,0 +1,17 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var smallestRangeI = function(nums, k) {
+    let min = Infinity, max = -Infinity;
+    for (const x of nums)
+    {
+        if (x < min)
+            min = x;
+        if (x > max)
+            max = x;
+    }
+    const diff = max - min - 2 * k;
+    return diff > 0? diff : 0;
+};

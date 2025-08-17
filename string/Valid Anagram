@@ -1,0 +1,25 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    if (s.length !== t.length) return false;
+
+    const st = new Map();
+    for (let i = 0; i < s.length; i++)
+        st.set(s[i], (st.get(s[i]) || 0) + 1);
+    for (let j = 0; j < t.length; j++)
+    {
+        if (!st.has(t[j]))
+            return false;
+        const left = st.get(t[j]) - 1;
+        if (left === 0)
+            st.delete(t[j]);
+        else if (left < 0)
+            return false;
+        else 
+            st.set(t[j], left);
+    }
+    return st.size === 0;
+};

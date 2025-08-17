@@ -1,0 +1,25 @@
+/**
+ * @param {number[]} widths
+ * @param {string} s
+ * @return {number[]}
+ */
+var numberOfLines = function(widths, s) {
+    if (s.length === 0)
+        return [0, 0];
+
+    let l = 0;
+    let r = 1;
+    for (let i = 0; i < s.length; i++)
+    {
+        const w = widths[s.charCodeAt(i) - 97]
+        if (l + w > 100)
+        {
+            r++;
+            l = w;
+        }
+        else
+            l += w;
+    }
+    return [r, l];
+};
+// 数组/字符串 + 模拟（贪心装箱：100 像素一行）

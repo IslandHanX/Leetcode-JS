@@ -1,0 +1,33 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function(s) {
+    let sum = 0;
+    for (let i = 0; i < s.length; i++)
+    {
+        let ch = s[i];
+        let chn = s[i + 1]
+        if (ch === 'I' && (chn === 'V' || chn === 'X'))
+            sum -= 1;
+        else if (ch === 'X' && (chn === 'L' || chn === 'C'))
+            sum -= 10;
+        else if (ch === 'C' && (chn === 'D' || chn === 'M'))
+            sum -= 100;
+        else if (ch === 'I' && (chn !== 'V' && chn !== 'X'))
+            sum += 1;
+        else if (ch === 'X' && (chn !== 'L' && chn !== 'C'))
+            sum += 10;
+        else if (ch === 'C' && (chn !== 'D' && chn !== 'M'))
+            sum += 100;
+        else if (ch === 'V')
+            sum += 5;
+        else if (ch === 'L')
+            sum += 50;
+        else if (ch === 'D')
+            sum += 500;
+        else if (ch === 'M')
+            sum += 1000;
+    }
+    return sum;
+};

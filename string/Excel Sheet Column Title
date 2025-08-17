@@ -1,0 +1,16 @@
+/**
+ * @param {number} columnNumber
+ * @return {string}
+ */
+var convertToTitle = function(columnNumber) {
+    let n = columnNumber;
+    let ans = [];
+    while (n > 0)
+    {
+        n--;
+        const ch = String.fromCharCode(65 + (n % 26));
+        ans.push(ch);
+        n = Math.floor(n / 26);
+    }
+    return ans.reverse().join('');
+};

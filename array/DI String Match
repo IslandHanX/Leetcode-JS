@@ -1,0 +1,17 @@
+/**
+ * @param {string} s
+ * @return {number[]}
+ */
+var diStringMatch = function(s) {
+    let lo = 0, hi = s.length;
+    const ans = [];
+    for (const ch of s)
+    {
+        if (ch === 'I')
+            ans.push(lo++);
+        else
+            ans.push(hi--);
+    }
+    ans.push(lo);
+    return ans;
+};

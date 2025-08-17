@@ -1,0 +1,18 @@
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortArrayByParity = function(nums) {
+    const res = [];
+    for (let n of nums)
+    {
+        if (n % 2 === 0)
+            res.push(n);
+    }
+    for (let s of nums)
+    {
+        if (s % 2 === 1)
+            res.push(s);
+    }
+    return res;
+};

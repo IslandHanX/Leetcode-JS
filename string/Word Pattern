@@ -1,0 +1,29 @@
+/**
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
+var wordPattern = function(pattern, s) {
+    let words = s.split(' ');
+    if (words.length !== pattern.length)
+        return false;
+    let p2w = new Map();
+    let w2p = new Map();
+    for (let i = 0; i < pattern.length; i++)
+    {
+        const p = pattern[i];
+        const w = words[i];
+        if (p2w.has(p) && p2w.get(p) !== w) return false;
+        if (w2p.has(w) && w2p.get(w) !== p) return false;
+
+        p2w.set(p, w);
+        w2p.set(w, p);
+    }
+    return true;
+};
+/*
+p2w.set(p, w)：key 是模式里的字母 p，value 是单词 w。
+w2p.set(w, p)：key 是单词 w，value 是字母 p。
+has(key)
+get(key) 
+*/

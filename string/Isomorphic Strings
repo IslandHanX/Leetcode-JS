@@ -1,0 +1,28 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+    if (s.length !== t.length)
+        return false;
+    const st = new Map();
+    const ts = new Map();
+
+    for (let i = 0; i < s.length; i++)
+    {
+        const a = s[i], b = t[i];
+        if (st.has(a) && st.get(a) !== b) return false;
+        if (ts.has(b) && ts.get(b) !== a) return false;
+        
+        st.set(a, b);
+        ts.set(b, a);
+    }
+    return true;
+    /* 
+    st：记录 s 的字符 a 映射到 t 的什么字符 b（s -> t）。
+    ts：记录 t 的字符 b 映射回 s 的哪个字符 a（t -> s）。
+    如果之前见过 a，但当时映射到的不是现在的 b，说明同一个 a 映射不一致，直接失败。
+    比如 s="foo", t="bar"：第一次见 o->a，第二次又要求 o->r，冲突。
+    */
+};

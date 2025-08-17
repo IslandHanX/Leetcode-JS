@@ -1,0 +1,14 @@
+/**
+ * @param {string} columnTitle
+ * @return {number}
+ */
+var titleToNumber = function(columnTitle) {
+    let ans = 0;
+    for (let i = 0; i < columnTitle.length; i++)
+    {
+        let ch = columnTitle[i];
+        const d = ch.charCodeAt() - 64;
+        ans = 26 * ans + d;
+    }
+    return ans;
+};

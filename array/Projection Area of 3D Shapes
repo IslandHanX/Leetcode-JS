@@ -1,0 +1,26 @@
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var projectionArea = function(grid) {
+    let cu = 0, cf = 0;
+    let n = grid.length;
+    const colMax = new Array(n).fill(0);
+    for (let i = 0; i < n; i++)
+    {
+        let rowMax = 0;
+        for (let j = 0; j < n; j++)
+        {
+            let cur = grid[i][j];
+            if (cur > 0)
+                cu++;
+            if (cur > rowMax)
+                rowMax = cur;
+            if (cur > colMax[j])
+                colMax[j] = cur;
+        }
+        cf += rowMax;
+    }
+    const cl = colMax.reduce((a, b) => a + b, 0);
+    return cl + cu + cf;
+};

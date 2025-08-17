@@ -1,0 +1,26 @@
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function(ransomNote, magazine) {
+    let n = ransomNote.length;
+    let m = magazine.length;
+    let count = new Map();
+    for (let i = 0; i < n; i++)
+    {
+        count.set(ransomNote[i], (count.get(ransomNote[i]) || 0) + 1);
+    }
+    for (let j = 0; j < m; j++)
+    {
+        if (count.has(magazine[j]))
+        {
+            const d = count.get(magazine[j]) - 1;
+            if (d === 0)
+                count.delete(magazine[j]);
+            else
+                count.set(magazine[j], d);
+        }
+    }
+    return count.size === 0;
+};

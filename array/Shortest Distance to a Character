@@ -1,0 +1,30 @@
+/**
+ * @param {string} s
+ * @param {character} c
+ * @return {number[]}
+ */
+var shortestToChar = function(s, c) {
+    let array = [];
+    let ans = [];
+    let j = 0;
+    for (let i = 0; i < s.length; i++)
+    {
+        if (c === s[i])
+        {
+            array[j] = i;
+            j++;
+        }
+    }
+    for (let i = 0; i < s.length; i++)
+    {
+        let minL = Infinity;
+        for (let j = 0; j < array.length; j++)
+        {
+            let l = Math.abs(array[j] - i);
+            if (l < minL)
+                minL = l;
+        }
+        ans.push(minL);
+    }
+    return ans;
+};

@@ -1,0 +1,36 @@
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var findWords = function(words) {
+    let set1 = new Set("qwertyuiop");
+    let set2 = new Set("asdfghjkl");
+    let set3 = new Set("zxcvbnm");
+    const res = [];
+    for (const w of words)
+    {
+        const s = w.toLowerCase();
+        if (s.length === 0)
+            continue;
+        let row;
+        if (set1.has(s[0]))
+            row = set1;
+        else if (set2.has(s[0]))
+            row = set2;
+        else
+            row = set3;
+
+        let ok = true;
+        for (const ch of s)
+        {
+            if (!row.has(ch))
+            {
+                ok = false;
+                break;
+            }
+        }
+        if (ok)
+            res.push(w);
+    }
+    return res;
+};

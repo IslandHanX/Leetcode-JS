@@ -1,0 +1,18 @@
+/**
+ * @param {number[]} num
+ * @param {number} k
+ * @return {number[]}
+ */
+var addToArrayForm = function(num, k) {
+    let n = num.length - 1;
+    let res = [];
+    while (n >= 0 || k > 0)
+    {
+        if (n >= 0)
+            k += num[n--];
+        res.push(k % 10);
+        k = Math.floor(k / 10);
+    }
+    res.reverse();
+    return res;
+};
