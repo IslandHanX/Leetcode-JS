@@ -1,0 +1,22 @@
+/**
+ * @param {string} moves
+ * @return {boolean}
+ */
+var judgeCircle = function(moves) {
+    let cu = 0, cl = 0, cr = 0, cd = 0;
+    let i = 0;
+    for (i = 0; i < moves.length; i++)
+    {
+        if (moves[i] === 'U')
+            cu++;
+        else if (moves[i] === 'D')
+            cd++;
+        else if (moves[i] === 'R')
+            cr++;
+        else if (moves[i] === 'L')
+            cl++;
+    }
+    if (cu === cd && cl === cr)
+        return true;
+    return false;
+};

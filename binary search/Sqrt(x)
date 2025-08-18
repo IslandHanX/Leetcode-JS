@@ -1,0 +1,22 @@
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+    if (x < 2)
+        return x;
+    let l = 1, r = Math.floor(x / 2) + 1;
+    let ans = 1;
+    while (l <= r)
+    {
+        const mid = Math.floor((l + r) / 2);
+        if (mid <= Math.floor(x / mid))
+        {
+            ans = mid;
+            l = mid + 1;
+        } else
+            r = mid - 1;
+    }
+    return ans;
+
+};

@@ -1,0 +1,18 @@
+/**
+ * @param {string} s
+ * @param {string} goal
+ * @return {boolean}
+ */
+var rotateString = function(s, goal) {
+    let s1 = s.split('');
+    if (s === goal)
+        return true;
+    for (let i = 0; i < s1.length; i++)
+    {
+        const first = s1.shift();
+        s1.push(first);
+        if (s1.join('') === goal)
+            return true;
+    }
+    return false;
+};

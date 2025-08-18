@@ -1,0 +1,34 @@
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reverseStr = function(s, k) {
+    let res = "";
+    let i = 0;
+
+    while (i < s.length)
+    {
+        if (i + 2 * k < s.length)
+        {
+            let tmp = s.slice(i, k + i).split('').reverse().join('');
+            res += tmp;
+            res += s.slice(k + i, 2 * k + i);
+            i += 2 * k;
+        }
+        else if (i + k < s.length && i + 2 * k >= s.length)
+        {
+            let tmp = s.slice(i, k + i).split('').reverse().join('');
+            res += tmp;
+            res += s.slice(k + i, s.length);
+            break;
+        }
+        else if (i + k >= s.length)
+        {
+            let tmp = s.slice(i, s.length).split('').reverse().join('');
+            res += tmp;
+            break;
+        }
+    }
+    return res;
+};

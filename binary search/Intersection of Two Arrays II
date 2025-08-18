@@ -1,0 +1,24 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+    const cnt = new Map();
+    for (const x of nums1)
+        cnt.set(x, (cnt.get(x) || 0) + 1);
+    const res = [];
+    for (const y of nums2)
+    {
+        const c = cnt.get(y) || 0;
+        if (c > 0)
+        {
+            res.push(y);
+            if (c === 1)
+                cnt.delete(y);
+            else
+                cnt.set(y, c - 1);
+        }
+    }
+    return res;
+};

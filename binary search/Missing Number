@@ -1,0 +1,13 @@
+// 因为异或法的“配对消掉”需要把 0..n 的每个数都出现一次，
+// 而你在循环里只把下标 0..n-1 异或进去了，还差那个 n 没出现，自然就少一对，无法完全抵消。
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function(nums) {
+    let x = nums.length;
+    for (let i = 0; i < nums.length; i++)
+        x ^= i ^ nums[i];
+    return x;
+};
