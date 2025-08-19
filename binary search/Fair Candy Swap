@@ -1,0 +1,19 @@
+/**
+ * @param {number[]} aliceSizes
+ * @param {number[]} bobSizes
+ * @return {number[]}
+ */
+var fairCandySwap = function(aliceSizes, bobSizes) {
+    const sum = array => array.reduce((a, b) => a + b, 0)
+    const SA = sum(aliceSizes);
+    const SB = sum(bobSizes);
+    const d = (SA - SB) / 2;
+    const setB = new Set(bobSizes);
+    for (const a of aliceSizes)
+    {
+        const b = a - d;
+        if (setB.has(b))
+            return [a, b];
+    }
+    return [];
+};
