@@ -1,0 +1,32 @@
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number}
+ */
+var countPrimeSetBits = function(left, right) {
+    const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
+    let ans = 0;
+    for (let x = left; x <= right; x++)
+    {
+        let n = x, cnt = 0;
+        while (n)
+        {
+            n &= (n - 1);
+            cnt++;
+        }
+        if (primes.has(cnt))
+            ans++;
+    }
+    return ans;
+};
+/*
+性质：n & (n-1) 会把 n 的最低位的那个 1 变成 0，其他位不变。
+例如 n=10 (1010)：
+
+第一次：1010 & 1001 = 1000
+
+第二次：1000 & 0111 = 0000
+循环跑了 2 次 ⇒ cnt=2，就是 1 的个数。
+
+相比逐位移位，这个方法的循环次数等于 1 的个数，通常更快。
+*/

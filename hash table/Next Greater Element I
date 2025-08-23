@@ -1,0 +1,18 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function(nums1, nums2) {
+    const next = new Map();
+    const st = [];
+    for (const x of nums2)
+    {
+        while (st.length && x > st[st.length - 1])
+            next.set(st.pop(), x);
+        st.push(x);
+    }
+    while (st.length)
+        next.set(st.pop(), -1);
+    return nums1.map(v => next.get(v));
+};

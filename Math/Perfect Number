@@ -1,0 +1,27 @@
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var checkPerfectNumber = function(num) {
+    if (num <= 1)
+        return false;
+    let sum = 1;
+    const r = Math.floor(Math.sqrt(num));
+    for (let d = 2; d <= r; d++)
+    {
+        if (num % d === 0)
+        {
+            sum += d;
+            const q = num / d;
+            if (q !== d)
+                sum += q;
+            if (sum > num)
+                return false;
+        }
+    }
+    return sum === num;
+};
+/* 我们只让 d 从 2 枚举到 ⌊√num⌋。
+对任意成对因子 (d, q=num/d)，都满足 d ≤ √num ≤ q。
+也就是说：大的那个因子 q 永远不会在后续被当成 d 再枚举到（除非两者相等）。
+*/

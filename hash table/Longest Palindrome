@@ -1,0 +1,20 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestPalindrome = function(s) {
+    let m = new Map();
+    for (let ch of s)
+    {
+        m.set(ch, (m.get(ch) || 0) + 1);
+    }
+    let len = 0, hasOdd = false;
+    for (const c of m.values())
+    {
+        len += c - (c & 1);
+        if (c & 1)
+            hasOdd = true;
+    }
+    return hasOdd ? len + 1 : len;
+
+};

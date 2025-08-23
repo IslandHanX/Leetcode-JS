@@ -1,0 +1,26 @@
+/**
+ * @param {number[]} deck
+ * @return {boolean}
+ */
+var hasGroupsSizeX = function(deck) {
+    let m = new Map();
+    for (let nb of deck)
+    {
+        m.set(nb, (m.get(nb) || 0) + 1);
+    }
+    function gcd (a, b)
+    {
+        while (b !== 0)
+            [a, b] = [b, a % b];
+        return Math.abs(a);
+    }
+
+    let g = 0;
+    for (const c of m.values())
+    {
+        g = gcd(g, c);
+        if (g === 1)
+            return false;
+    }
+    return true;
+};

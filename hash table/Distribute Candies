@@ -1,0 +1,15 @@
+/**
+ * @param {number[]} candyType
+ * @return {number}
+ */
+var distributeCandies = function(candyType) {
+    let s = new Set();
+    let count = 0;
+    for (let ch of candyType)
+    {
+        if (!s.has(ch))
+            count++;
+        s.add(ch);
+    }
+    return Math.min(candyType.length / 2, count);
+};

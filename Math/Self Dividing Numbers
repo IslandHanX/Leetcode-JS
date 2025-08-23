@@ -1,0 +1,30 @@
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number[]}
+ */
+var selfDividingNumbers = function(left, right) {
+    let flag = 0;
+    let res = [];
+    while (left <= right)
+    {
+        let m = left;
+        while (m > 0)
+        {
+            let d = m % 10;
+            if (d === 0 || left % d !== 0)
+            {   
+                flag = 1;
+                break;
+            }
+            m = Math.trunc(m / 10);
+        }
+        if (flag === 0)
+        {
+            res.push(left);
+        }
+        flag = 0;
+        left++;
+    }
+    return res;
+};
