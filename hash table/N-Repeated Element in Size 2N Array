@@ -1,0 +1,15 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var repeatedNTimes = function(nums) {
+    let n = nums.length / 2;
+    let m = new Map();
+    for (let w of nums)
+    {
+        m.set(w, (m.get(w) || 0) + 1);
+        let c = m.get(w);
+        if (c === n)
+            return w;
+    }
+};

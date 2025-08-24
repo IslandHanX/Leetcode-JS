@@ -1,0 +1,28 @@
+/**
+ * @param {string[]} words
+ * @param {string} order
+ * @return {boolean}
+ */
+var isAlienSorted = function(words, order) {
+    const rank = new Array(26);
+    for (let i = 0; i < 26; i++)
+        rank[order.charCodeAt(i) - 97] = i;
+    for (let k = 0; k < words.length - 1; k++)
+    {
+        const a = words[k], b = words[k + 1];
+        const m = Math.min(a.length, b.length);
+        let i = 0;
+        for (; i < m; i++)
+        {
+            const ra = rank[a.charCodeAt(i) - 97];
+            const rb = rank[b.charCodeAt(i) - 97];
+            if (ra < rb)
+                break;
+            if (ra > rb)
+                return false;
+        }
+        if (i === m && a.length > b.length)
+            return false;
+    }
+    return true;
+};

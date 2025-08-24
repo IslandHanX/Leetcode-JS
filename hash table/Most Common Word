@@ -1,0 +1,25 @@
+/**
+ * @param {string} paragraph
+ * @param {string[]} banned
+ * @return {string}
+ */
+var mostCommonWord = function(paragraph, banned) {
+    const words = paragraph.toLowerCase().match(/[a-z]+/g) || [];
+    const ban = new Set(banned.map(w => w.toLowerCase()));
+
+    const cnt = new Map();
+    let best = "", bestCnt = 0;
+    for (const w of words)
+    {
+        if (ban.has(w))
+            continue;
+        const c = (cnt.get(w) || 0) + 1;
+        cnt.set(w, c);
+        if (c > bestCnt)
+        {
+            bestCnt = c;
+            best = w;
+        }
+    }
+    return best;
+};

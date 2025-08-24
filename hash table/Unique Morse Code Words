@@ -1,0 +1,19 @@
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+var uniqueMorseRepresentations = function(words) {
+    const morse = [
+    ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
+    "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-",
+    "..-","...-",".--","-..-","-.--","--.."];
+    const seen = new Set();
+    for (const w of words)
+    {
+        let t = "";
+        for (const ch of w)
+            t += morse[ch.charCodeAt(0) - 97];
+        seen.add(t);
+    }
+    return seen.size;
+};

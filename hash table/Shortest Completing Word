@@ -1,0 +1,42 @@
+/**
+ * @param {string} licensePlate
+ * @param {string[]} words
+ * @return {string}
+ */
+var shortestCompletingWord = function(licensePlate, words) {
+    let l = licensePlate.toLowerCase();
+    let len = words.length;
+    let m = new Map();
+    for (let i = 0; i < l.length; i++)
+    {
+        if (l[i].charCodeAt() >= 97 && l[i].charCodeAt() <= 122)
+            m.set(l[i], (m.get(l[i]) || 0) + 1);
+    }
+
+    function covers(word)
+    {
+        const cnt = new Map();
+        for (const ch of word.toLowerCase())
+        {
+            const code = ch.charCodeAt(0);
+            if (code >= 97 && code <= 122) {
+                cnt.set(ch, (cnt.get(ch) || 0) + 1);
+            }
+        }
+        for (const [ch, c] of m)
+        {
+            if ((cnt.get(ch) || 0) < c)
+                return false;
+        }
+        return true;
+    }
+    let ans = "";
+    for (const w of words)
+    {
+        if (ans !== "" && w.length >= ans.length)
+            continue;
+        if (covers(w))
+            ans = w;
+    }
+    return ans;
+};

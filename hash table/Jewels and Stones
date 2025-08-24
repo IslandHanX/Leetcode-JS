@@ -1,0 +1,25 @@
+/**
+ * @param {string} jewels
+ * @param {string} stones
+ * @return {number}
+ */
+var numJewelsInStones = function(jewels, stones) {
+    let jew = new Set();
+    let count = 0;
+    for (let je of jewels)
+    {
+        if (!jew.has(je))
+            jew.add(je);
+    }
+    for (let i of jew)
+    {
+        for (let j = 0; j < stones.length; j++)
+        {
+            if (i === stones[j])
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+};

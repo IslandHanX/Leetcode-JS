@@ -1,0 +1,17 @@
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
+var numUniqueEmails = function(emails) {
+    const seen = new Set();
+
+    for (const e of emails)
+    {
+        const [local, domain] = e.split('@');
+        const plus = local.indexOf('+');
+        const beforePlus = plus === -1 ? local : local.slice(0, plus);
+        const cleanedLocal = beforePlus.replace(/\./g, '');
+        seen.add(`${cleanedLocal}@${domain}`);
+    }
+    return seen.size;
+};
