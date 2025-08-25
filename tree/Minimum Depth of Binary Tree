@@ -1,0 +1,23 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var minDepth = function(root) {
+    if (!root)
+        return 0;
+    const L = minDepth(root.left);
+    const R = minDepth(root.right);
+    if (!root.left)
+        return R + 1;
+    if (!root.right)
+        return L + 1;
+    return Math.min(L+1, R+1);
+};
